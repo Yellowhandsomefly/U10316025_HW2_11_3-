@@ -1,11 +1,12 @@
 class Account{
 
-	
+	/**Data field*/
 	private int id;
 	private double balance;
 	private double annualInterestRate;
 	private Date dateCreated;
 
+	/**a no-arg constructor to initialize data field*/
 	Account(){
 
 		dateCreated = new Date();
@@ -14,6 +15,7 @@ class Account{
 		annualInterestRate = 0;
 	}
 
+	/**a constructor to give the value to data field*/
 	Account(int id, double balance){
 
 		dateCreated = new Date();
@@ -21,61 +23,73 @@ class Account{
 		this.balance = balance;
 	}
 
+	/**a set method to set id*/
 	public void setId(int id){
 
 		this.id = id;
 	}
 
+	/**a set method to set balance*/
 	public void setBalance(double balance){
 
 		this.balance = balance;
 	}
 
+	/**a set method to set annual interest rate*/
 	public void setAnnualInterestRate(double annualInterestRate){
 
 		this.annualInterestRate = annualInterestRate;
 	}
 
+	/**a get method to return id*/
 	public int getId(){
 
 		return id;
 	}
 
+	/**a get method to return balance*/
 	public double getBalance(){
 
 		return balance; 
 	}
 
+	/**a get method to return annualInterestRate*/
 	public double getAnnualInterestRate(){
 
 		return annualInterestRate / 100;
 	}
 
+	/**a get method to return the created date*/
 	public Date getDateCreated(){
 
 		return dateCreated;
 	}
 
+	/**a method to withdraw and record the new balance*/
 	public void withdraw(double withdraw){
 
 		balance = balance - withdraw;
 	}
 
+	/**a method to deposit and record the new balance*/
 	public void deposit(double deposit){
 	
 		balance = balance + deposit;
 	}
 
+	/**a get method to return the monthly interest rate*/
 	public double getMonthlyInterestRate(){
 
 		return annualInterestRate / 1200;
 	}
 
+	/**a get method to return the monthly interest*/
 	public double getMonthlyInterest(){
 
 		return balance * (annualInterestRate / 1200);
 	}
 
+	/**a toString method to return the string*/
 	public String toString(){
 
 		return "ID : " + getId() + "\nBalance : $" + getBalance() + "\nMonthly Interest : $" + getMonthlyInterest() + "\nDate : " + dateCreated;

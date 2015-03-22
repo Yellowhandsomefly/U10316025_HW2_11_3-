@@ -1,21 +1,15 @@
 public class SavingsAccount extends Account{
 
-	/**data field*/
-	private double savingMoney;
-
 	/**a no-arg constructor to initialize data field*/
 	SavingsAccount(){
 
 		super();	
-		savingMoney = 0;
 	}
 
 	/**a constructor to give the value to data field*/
-	SavingsAccount(int iid, double bbalance, double ssavingMoney){
+	SavingsAccount(int iid, double bbalance){
 
 		super(iid, bbalance);
-		this.savingMoney = ssavingMoney;
-		super.deposit(savingMoney);
 	}
 	
 	/**a method to invoke setAnnualInterestRate method of the superclass to set annual interest rate*/
@@ -24,23 +18,40 @@ public class SavingsAccount extends Account{
 		super.setAnnualInterestRate(annualInterestRate);
 	}
 	
-	/**a set method to set saving money*/
-	public void setSavingMoney(double ssavingMoney){
+	/**a method to withdraw and record the new balance*/
+	public void withdraw(double wwithdraw){
+		
+		double money;	
+		money = overdraft(wwithdraw);
+		super.withdraw(money);
+	}
+
+	/**a method to deposit and record the new balance*/
+	public void deposit(double deposit){
 	
-		this.savingMoney = ssavingMoney;
-		super.deposit(savingMoney);
+		super.deposit(deposit);
 	}
 	
-	/**a get method to return saving money*/
-	public double getSavingMoney(){
+	/**decide if the account has the overdraft limit*/
+	public double overdraft(double withdrawMoney){
 
-		return savingMoney;
+		double balance = super.getBalance();
+		
+		if(balance < withdrawMoney){
+
+			System.out.println("Your balance is less than withdraw Money\nSaving account cannot be overdrawn!");
+		
+			withdrawMoney = 0;
+		}
+		
+		System.out.println("Withdraw Money : " + withdrawMoney);
+		return withdrawMoney;
 	}
 
 	@Override
 	public String toString(){
 
-		return "---------------------------------------\nSaving Money : " + getSavingMoney() + "\n" + super.toString();
+		return super.toString();
 	}
 }
 	
